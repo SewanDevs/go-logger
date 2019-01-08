@@ -122,6 +122,10 @@ func New(level string, writer string, prettyprint string) Logger {
 }
 
 // Log writes and outputs a given data *v* to a given Level *level*.
+// Note that the data *v* works on a key/value basis, which means you need to
+// have an even number of parameters after level.
+// Use exemple:
+// lg.Log(logger.INFO, "message_key", "my_message", "important_number_key", 1)
 func (lg Logger) Log(level Level, v ...interface{}) {
 	if level >= lg.level {
 		lg.json.Timestamp = time.Now().Format("2006-01-02 15:04:05")
